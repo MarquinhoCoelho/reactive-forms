@@ -50,6 +50,21 @@
     <input formControlName="password" type="password"
       class="form-control" placeholder="Senha"
     />
+    <app-mensagens *ngIf="novoUsuarioForm.errors?.['senhaIgualUsuario']"
+      [mensagem]="'Senha deve ser diferente do usuário'"
+    >
+    </app-mensagens>
+
+    <app-mensagens *ngIf="novoUsuarioForm.get('password')?.errors?.['caracterEspecial'] && novoUsuarioForm.get('password')?.touched"
+      [mensagem]="'Senha precisa de pelo menos um caracter especial'"
+    >
+    </app-mensagens>
+
+    <app-mensagens *ngIf="novoUsuarioForm.get('password')?.errors?.['minimo8'] && novoUsuarioForm.get('password')?.touched"
+    [mensagem]="'Senha precisa de pelo menos 8 caracteres'"
+  >
+  </app-mensagens>
+
   </div>
 
   <button class="btn btn-primary btn-block">Cadastro</button>
